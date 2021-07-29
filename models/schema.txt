@@ -153,3 +153,59 @@ INSERT INTO participants (room_id, user_id, role) VALUES (10, 10, 'HOST');
 
 INSERT INTO participants (room_id, user_id, role) VALUES (11, 1, 'HOST');
 INSERT INTO participants (room_id, user_id, role) VALUES (12, 3, 'HOST');
+
+/* ****************************** DAN HOMEWORK 1 ************************** */
+/* =                      (https://github.com/dandan682)                  = */
+/* ======================================================================== */
+
+/* ======================================================================== */
+/* Question 1: How many rooms does the club "Hail our AI Overlords" have?   */
+/* Answer: 3 rooms                                                          */
+/* ======================================================================== */
+
+SELECT c.name as club_name, r.name as room_name 
+
+FROM CLUBS c, ROOMS r 
+
+WHERE c.name = 'Hail our AI Overlords' and r.club_id = c.id 
+ORDER BY r.id
+;
+
+/* ========================================================================= */
+/* Question 2: Which rooms has  John Wick as a participant?                  */
+/* Answer: Achieving impossible tasks and Strength Training for MMA          */
+/* ========================================================================= */
+
+SELECT r.id as room_id, r.name as room_name, u.name as participant 
+
+FROM rooms r, participants p, users u 
+
+WHERE r.id = p.room_id and p.user_id = u.id and u.name = 'John Wick'
+ORDER BY r.id
+;
+
+/* ========================================================================= */
+/* Question 3: How many followers does the club "The council of ricks" have? */
+/* Answer: 4 followers                                                       */
+/* ========================================================================= */
+
+SELECT c.name as club_name, u.name as follower_name
+ 
+FROM clubs c, followers f, users u 
+
+WHERE c.name = 'The Council of Ricks' and f.club_id = c.id and f.user_id = u.id
+ORDER BY u.name
+;
+
+/* ========================================================================= */
+/* Question 4: How many clubs is Elon Musk following?                        */
+/* Answer: 3 clubs                                                           */
+/* ========================================================================= */
+
+SELECT c.name as club_name, u.name as follower_name 
+
+FROM clubs c, followers f, users u 
+
+WHERE u.name = 'Elon Musk' and f.user_id = u.id and c.id = f.club_id 
+ORDER BY c.name
+;
